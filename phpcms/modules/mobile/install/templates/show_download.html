@@ -1,0 +1,9 @@
+{template "mobile","header"}
+<div class="wrap" id="hd">
+ <div class="adds">{list_pos($catid)}</div>
+<h1>{$title}</h1>
+<div class="tm">作者：{$username}&nbsp;&nbsp;日期：{date('m-d',strtotime($inputtime))}</div>
+<div class="content">
+{$content}
+</div>
+{template "mobile","footer"}

@@ -1,0 +1,6 @@
+{template "mobile","header"}
+<div class="adds" id="hd">{list_pos($catid)}</div>
+{loop subcate($catid)  $s}
+	<a href="{$s['url']}" style=" display:inline-block;text-align:center; padding:5px; margin-top:10px; border:#0C9 solid 1px;">{$s['catname']}</a><br />
+{/loop}
+{template "mobile","footer"}

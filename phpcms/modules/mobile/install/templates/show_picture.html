@@ -1,0 +1,12 @@
+{template "mobile","header"}
+<div class="wrap" id="hd">
+ <div class="adds">{list_pos($catid)}</div>
+<h1>{$title}</h1>
+<div class="tm">作者：{$username}&nbsp;&nbsp;日期：{date('m-d',strtotime($inputtime))}</div>
+<div class="content">
+
+{loop $pictureurls $pic_k $r}
+<img src="{$r[url]}" alt="{$r[alt]}" width="200" height="120"/><br />
+{/loop}
+</div>
+{template "mobile","footer"}

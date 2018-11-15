@@ -1,0 +1,1 @@
+INSERT INTO `phpcms_module` VALUES ('customfield', '自定义变量', 'customfield/', '0', '1.0', 'frontLon', '', '0', '0', '2015-08-01', '2015-08-01');

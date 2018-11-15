@@ -1,0 +1,15 @@
+{template "mobile","header"}
+<div class="wrap">
+   <div class="adds" id="hd">{$mobile['sitename']} - 导航</div>
+    <div class="cts">
+	 
+	 {loop subcate(0) $s}
+		<a href="{$s['url']}">[{$s[catname]}]</a>
+		{loop subcate($s[catid]) $r}
+		<a href="{$r['url']}">{$r[catname]}</a>
+		{/loop}
+		<br />
+	 {/loop}
+    
+    </div>
+{template "mobile","footer"}

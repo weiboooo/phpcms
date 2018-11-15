@@ -1,0 +1,12 @@
+{template "mobile","header"}
+<div class="wrap" id="hd">
+ <div class="adds">{list_pos($catid)}</div>
+<h1>{$title}</h1>
+<div class="tm">作者：{$username}&nbsp;&nbsp;日期：{date('m-d',strtotime($inputtime))}&nbsp;&nbsp;浏览：<span id="hits"></span></div>
+<div class="content">
+{$content}<br />
+<strong>上一篇：</strong><a href="{$previous_page[url]}">{$previous_page[title]}</a><br />
+<strong>下一篇：</strong><a href="{$next_page[url]}">{$next_page[title]}</a>
+</div>
+<script language="JavaScript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+{template "mobile","footer"}

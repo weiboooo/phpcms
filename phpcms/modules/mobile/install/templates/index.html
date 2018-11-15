@@ -1,0 +1,42 @@
+{template "mobile","header"}
+<h2><a href="#" class="cat">焦点推荐</a></h2>
+<div>
+{pc:mobile  action="position" posid="2" order="listorder DESC" num="6"}
+ {loop $data $r}
+	<a href="{$r[url]}">{str_cut($r['title'],26,'')}</a><br/>
+   {/loop}  
+ {/pc} 
+</div>
+
+<h2><a href="#" class="cat">排行榜</a></h2>
+<div>
+{pc:mobile action="hits" catid="10" num="6" order="views DESC" }
+ {loop $data $r}
+	<a href="{$r['url']}">{str_cut($r['title'],26,'')}</a><br/>
+   {/loop}  
+ {/pc} 
+</div>
+
+{pc:mobile action="category" catid="0" num="10" siteid="$siteid" }
+{loop $data  $v}
+		<h2><a href="{$v[url]}" class="cat">{$v['catname']}</a>
+		 
+         {pc:mobile action="category" catid="$v['catid']" num="10" siteid="$siteid" }
+         {loop $data  $s}
+         <a href="{$s[url]}">{$s[catname]}</a>
+         {/loop}
+         {/pc}
+		</h2>
+		<div>
+        {if $v['type']==0}
+        {pc:mobile action="lists" catid="$v['catid']" num="10" order="id DESC" return="info"}
+		{loop $info $i}
+			<a href="{$i['url']}">{str_cut($i['title'],26,'')}</a><br/>
+		{/loop}
+        {/pc}
+        {/if}
+		</div>
+	
+{/loop}
+{/pc}
+{template "mobile","footer"}

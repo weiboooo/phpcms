@@ -1,0 +1,51 @@
+{template "content","header"}
+<link href="{CSS_PATH}guestbook.css" rel="stylesheet" type="text/css" />
+<!--main-->
+<div class="main"> 
+  <!--left_bar--> 
+  {pc:guestbook action="get_type" typeid="$type_id" siteid="$siteid" }
+  {php $type_arr = $data;}
+  {/pc}
+  <div class="col-left">
+    <div class="crumbs"><a href="{siteurl($siteid)}">网站首页</a><span> &gt; </span><a href="{APP_PATH}index.php?m={ROUTE_M}&siteid={$siteid}">留言板</a><span> &gt; </span>{$type_arr[name]}</div>
+    <div class="box boxsbg cboxs">
+      <h5>{$type_arr[name]} </h5>
+      <div class="tag_a"> 
+	  {pc:guestbook action="lists" typeid="$type_id" siteid="$siteid" page="$_GET[page]" order="desc" num="10" return="dat"}
+        {loop $dat $v}
+         <table class="ltable" width="95%" border="0"  align="center">
+          <tr>
+          <td width="25%">姓名：{$v[name]}</td>
+          <td width="35%">性别：{$v[sex]}</td>
+          <td>时间：{date('Y-m-d H:i:s',$v[addtime])} </td>
+          </tr>
+          <tr>
+            <td colspan="4"><span><b>留言内容：</b>&nbsp;{$v[introduce]}</span></td>
+           </tr>
+          <tr>
+            <td colspan="4"><span class="huifu"><b>管理员回复：</b>&nbsp;{$v[reply]}</span></td>
+          </tr>
+        </table>
+        {/loop}
+		{$pages}
+        {/pc} </div>
+      <!--pages--> 
+    </div>
+  </div>
+  <!--right_bar-->
+  <div class="col-auto"> 
+    <!--广告228x90-->
+    <div class="box">
+      <h5 class="title-2">留言板分类</h5>
+      <div class="tag_a"> <a href="{APP_PATH}index.php?m=guestbook&c=index&a=list_type&type_id=0&siteid={$siteid}" title="默认分类">默认分类</a> {pc:guestbook action="type_lists" listorder="desc" siteid="$siteid"}
+        {loop $data $type_v} <a href="{APP_PATH}index.php?m=guestbook&c=index&a=list_type&type_id={$type_v[typeid]}&siteid={$siteid}" title="{$type_v[name]}">{$type_v[name]}</a> {/loop}
+        {/pc} </div>
+    </div>
+    <div class="bk10"></div>
+    {if $setting['is_post']=='1'}
+    <div class="txt_c"> <a href="{APP_PATH}index.php?m=guestbook&c=index&a=register&siteid={$siteid}" class="sqlj_btn"></a> </div>
+    {/if} </div>
+</div>
+{template "content","footer"} 
+
+

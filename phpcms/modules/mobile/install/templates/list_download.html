@@ -1,0 +1,20 @@
+{template "mobile","header"}
+<div class="wrap" id="hd">
+ <div class="adds">{list_pos($catid)}</div>
+<div>
+
+{loop $list $v}
+	<a href="{$v['url']}" title="{$v['title']}">{str_cut($v['title'],26,'')}</a><br/>
+{/loop}
+</div>
+ <div>{$pages}</div>
+ <h2><a href="#" class="cat">热点排行</a></h2>
+<div>
+{pc:content action="hits" catid="$catid" num="6" order="views DESC" cache="3600"}
+ {loop $data $r}
+	<a href="{$r[url]}">{str_cut($r['title'],26,'')}</a><br/>
+   {/loop}  
+ {/pc} 
+</div>
+
+{template "mobile","footer"}

@@ -1,0 +1,15 @@
+{template "mobile","header"}
+<div class="adds" id="hd">{list_pos($catid)}</div>
+
+{loop subcate($catid)  $s}
+	{pc:mobile action="lists" catid="$s[catid]" num="10" order="id DESC" return="info"}
+	<h2><a href="{$s['url']}" class="cat">{$s['catname']}</a></h2>
+	<div>
+	{loop $info $v}
+	<a href="{$v['url']}" title="{$v['title']}">{str_cut($v['title'],26,'')}</a><br/>
+	{/loop}
+	</div>
+	{/pc}
+{/loop}
+
+{template "mobile","footer"}
